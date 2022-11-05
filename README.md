@@ -7,3 +7,19 @@
 ### About
 A TODO application for your tasks
 
+### How to run app
+
+    python3.10 -m venv venv
+
+    source venv/bin/activate
+
+    pip install -r requirements.txt
+
+    cd todo
+
+    python manage.py migrate
+    python manage.py runserver
+    
+    
+    
+

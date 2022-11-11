@@ -1,6 +1,11 @@
 from rest_framework import serializers
+from .models import Task
 
 
-class TaskSerializer(serializers.Serializer):
-    text = serializers.CharField(max_length=500)
-    author = serializers.CharField(source='author.username', max_length=200)
+class TaskListSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+
+    class Meta:
+        model = Task
+        fields = '__all__'
+

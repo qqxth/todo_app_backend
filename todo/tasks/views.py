@@ -1,18 +1,17 @@
-from django.shortcuts import render
-
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from django.contrib.auth.models import User
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import generics, permissions
 
 from .models import Task
-from .serializers import TaskSerializer
+from .serializers import TaskListSerializer
 
 
-class GetTaskInfoView(APIView):
-    def get(self, request):
-        queryset = Task.objects.all()
-        serializer_for_queryset = TaskSerializer(
-            instance=queryset,
-            many=True,
-        )
-        return Response(serializer_for_queryset.data)
+class TaskListView(generics.ListAPIView):
+    lookup_field = 'author'
+
+    serializer_class = TaskListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Task.objects.filter(author=self.request.user.id).all()
 

@@ -5,5 +5,7 @@ from . import views
 app_name = 'tasks'
 
 urlpatterns = [
-    path('api/tasks/', views.GetTaskInfoView.as_view()),
+    path(
+        'api/tasks/<int:author>/', views.TaskListView.as_view()
+    ),
 ]

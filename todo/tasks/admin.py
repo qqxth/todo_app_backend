@@ -10,9 +10,11 @@ class TaskAdmin(admin.ModelAdmin):
         'author',
         'text',
         'created',
+        'is_did',
     )
     list_editable = (
         'text',
+        'is_did',
     )
     search_fields = (
         'author',

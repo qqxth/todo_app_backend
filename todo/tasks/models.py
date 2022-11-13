@@ -23,9 +23,12 @@ class Task(models.Model):
         null=False,
         related_name='tasks',
     )
+    is_did = models.BooleanField(
+        default=False
+    )
 
     class Meta:
-        ordering = ('-created',)
+        ordering = [models.F('is_did').asc(nulls_last=True), '-created']
 
     def __str__(self):
         return 'Задача'

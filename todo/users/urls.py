@@ -4,5 +4,5 @@ from .views import UserTokenObtainPairView
 app = 'users'
 
 urlpatterns = [
-    path('create-token/', UserTokenObtainPairView.as_view())
+    path('jwt/create/', UserTokenObtainPairView.as_view()),
 ]
